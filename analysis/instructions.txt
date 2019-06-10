@@ -1,0 +1,39 @@
+Follow instructions to replicate "Power and Transparency in Political Negotiations"
+Note: running all contents of 'master.R' takes 2-3 hours (on i5-8400 @2.8 GHz)
+contact philippbroniecki@gmail.com for questions
+replication files are also hosted on: https://www.github.com/...
+
+1) open 'master.R'
+2) change 'main' to the directory where 'master.R' is located (line 20) 
+	(e.g.: main <- 'C:/Users/Philipp/Dropbox/research/papers/Power and Transparency in Political Negotiations/analysis')
+3) check the list of required packages and install missing packages with install.packages('name of package'), e.g.: install.packages('Amelia')
+	list of required packages:
+	- Amelia
+	- texreg
+	- psych
+	- frm
+	- Matching
+	- MASS
+	- gbm
+	- dplyr
+	- xtable
+4) optional: set the number of imputations in 'N_imputations' (line 27) 
+	(default = 1000 for replication; e.g.: N_imputations <- 1000)
+5) optional: to print latex fonts, set 'latex' to 1 (line 36); (e.g.: latex <- 1)
+	instructions for 5) optional: 
+	(note that this may not run on Mac)
+	- Rtools must be installed (google Rtools)
+	- Ghostscript must be installed (google Ghostscript)
+	- have R packages: rjson, fontcm and extrafont installed
+	- specify ghostscript file path in 'ghostscript.file.path' (line 45); (e.g.: ghostscript.file.path <- 'C:/Program Files/gs/gs9.27/bin/gswin64c.exe')
+6) Run lines 49-59 which set the subdirectory structure
+7) Run everything in 'sequence' section (lines 64-156)
+
+Directories (folders):
+- graphs will be written to 'figures' directory (in pdf format)
+- tables will be written to 'tables' directory (in html format)
+- 'original data sets' directory contains the data needed for replication (do not change)
+- 'scripts' directory contains the R script files that are sourced from 'master.R' (do not change)
+- 'work data' directory contains data files generated when the script is first run (can be deleted which requires re-run of 'master.R' script)
+
+Please note that due to the random number generator, replication requires that the progam 'master.R' is run in one go.

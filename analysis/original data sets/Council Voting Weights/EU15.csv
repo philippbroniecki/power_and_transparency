@@ -1,0 +1,16 @@
+country,abbr,weights,quota,block,banzhaf,shapleyshubik
+austria,at,4,62,26,0.0479,0.04536
+belgium,be,5,62,26,0.0587,0.055176
+denmark,dk,3,62,26,0.0359,0.035254
+finland,fi,3,62,26,0.0359,0.035254
+france,fr,10,62,26,0.1116,0.116666
+germany,de,10,62,26,0.1116,0.116666
+greece,el,5,62,26,0.0587,0.055176
+ireland,ie,3,62,26,0.0359,0.035254
+italy,it,10,62,26,0.1116,0.116666
+luxembourg,lu,2,62,26,0.0226,0.02069
+netherlands,nl,5,62,26,0.0587,0.055176
+portugal,pt,5,62,26,0.0587,0.055176
+spain,es,8,62,26,0.0924,0.09546
+sweden,se,4,62,26,0.0479,0.04536
+united kingdom,uk,10,62,26,0.1116,0.116666
