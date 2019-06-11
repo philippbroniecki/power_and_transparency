@@ -109,9 +109,5 @@ imputation.fun <- function(){
 }
 
 # run everything
-s.time <- Sys.time()
 imputation.fun()
-e.time <- Sys.time()
-e.time - s.time
-time.box$script3 <- e.time - s.time
 rm(imputation.fun)

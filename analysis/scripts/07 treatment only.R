@@ -113,63 +113,60 @@ treatment.only <- function(){
   
 }
 
-# run everything
-s.time <- Sys.time()
-treatment.only()
-e.time <- Sys.time()
-e.time - s.time
-time.box$script7 <- e.time - s.time
-rm(treatment.only)
-
-# table 3
-setwd(subdirs$workdata)
-load(file = "main_model.Rdata")
-load(file = "non_parametric_model.RData")
-load(file = "treatment_only_model.RData")
-
-# output
-x <- cbind(
-  # rownames
-  cbind(
-    rbind("EP Position Opaque", " ", "Propensity Score", " ", "Constant", " ", "N", "R^2 (correlation squared)")
-  ),
-  # model with treatment effect only
-  rbind(
-    round(box_treatment_only[[1]]["50%", "EP Position Opaque"], 2),
-    paste("(", round(box_treatment_only[[2]]["EP Position Opaque"], 2),")",sep=""),
-    " ",
-    " ",
-    round(box_treatment_only[[1]]["50%", "INTERCEPT"], 2),
-    paste("(", round(box_treatment_only[[2]]["INTERCEPT"], 2),")",sep=""),
-    box_treatment_only$N,
-    round(box_treatment_only[[3]],2)
-  ),
-  # model with parametric propensity score
-  rbind(
-    round(box$pointestimates["50%", "EP Position Opaque"], 2),
-    paste("(", round(box$standarderrors["EP Position Opaque"], 2),")",sep=""),
-    round(box$pointestimates["50%", "Controls"], 2),
-    paste("(", round(box$standarderrors["Controls"], 2),")",sep=""),
-    round(box$pointestimates["50%", "INTERCEPT"], 2),
-    paste("(", round(box$standarderrors["INTERCEPT"], 2),")",sep=""),
-    box$N,
-    round(box$r2, 2)
-  ),
-  # model with non-parametric propensity score
-  rbind(
-    round(box_gb[[1]]["50%", "EP Position Opaque"], 2),
-    paste("(", round(box_gb[[2]]["EP Position Opaque"], 2),")",sep=""),
-    round(box_gb[[1]]["50%", "Controls"], 2),
-    paste("(", round(box_gb[[2]]["Controls"], 2),")",sep=""),
-    round(box_gb[[1]]["50%", "INTERCEPT"], 2),
-    paste("(", round(box_gb[[2]]["INTERCEPT"], 2),")",sep=""),
-    box_gb$N,
-    round(box_gb[[3]], 2)
+print.table3 <- function(){
+  # table 3
+  setwd(subdirs$workdata)
+  load(file = "main_model.Rdata")
+  load(file = "non_parametric_model.RData")
+  load(file = "treatment_only_model.RData")
+  
+  # output
+  x <- cbind(
+    # rownames
+    cbind(
+      rbind("EP Position Opaque", " ", "Propensity Score", " ", "Constant", " ", "N", "R^2 (correlation squared)")
+    ),
+    # model with treatment effect only
+    rbind(
+      round(box_treatment_only[[1]]["50%", "EP Position Opaque"], 2),
+      paste("(", round(box_treatment_only[[2]]["EP Position Opaque"], 2),")",sep=""),
+      " ",
+      " ",
+      round(box_treatment_only[[1]]["50%", "INTERCEPT"], 2),
+      paste("(", round(box_treatment_only[[2]]["INTERCEPT"], 2),")",sep=""),
+      box_treatment_only$N,
+      round(box_treatment_only[[3]],2)
+    ),
+    # model with parametric propensity score
+    rbind(
+      round(box$pointestimates["50%", "EP Position Opaque"], 2),
+      paste("(", round(box$standarderrors["EP Position Opaque"], 2),")",sep=""),
+      round(box$pointestimates["50%", "Controls"], 2),
+      paste("(", round(box$standarderrors["Controls"], 2),")",sep=""),
+      round(box$pointestimates["50%", "INTERCEPT"], 2),
+      paste("(", round(box$standarderrors["INTERCEPT"], 2),")",sep=""),
+      box$N,
+      round(box$r2, 2)
+    ),
+    # model with non-parametric propensity score
+    rbind(
+      round(box_gb[[1]]["50%", "EP Position Opaque"], 2),
+      paste("(", round(box_gb[[2]]["EP Position Opaque"], 2),")",sep=""),
+      round(box_gb[[1]]["50%", "Controls"], 2),
+      paste("(", round(box_gb[[2]]["Controls"], 2),")",sep=""),
+      round(box_gb[[1]]["50%", "INTERCEPT"], 2),
+      paste("(", round(box_gb[[2]]["INTERCEPT"], 2),")",sep=""),
+      box_gb$N,
+      round(box_gb[[3]], 2)
+    )
   )
-)
-colnames(x) <- c(" ","Treatment Only", "Parametric Propensity Score", "Non-Parametric Propensity Score")
-table3 <- xtable(x, align = c("l","c","c","c","c"), NA.string = " ", sanitize.rownames.function = TRUE)
-print.xtable(table3, include.rownames = FALSE, include.colnames = TRUE, 
-             type = "html", file = paste(subdirs$tables,"/table3.html",sep=""))
+  colnames(x) <- c(" ","Treatment Only", "Parametric Propensity Score", "Non-Parametric Propensity Score")
+  table3 <- xtable(x, align = c("l","c","c","c","c"), NA.string = " ", sanitize.rownames.function = TRUE)
+  print.xtable(table3, include.rownames = FALSE, include.colnames = TRUE, 
+               type = "html", file = paste(subdirs$tables,"/table3.html",sep=""))
+}
 
-rm(box, box_gb, box_treatment_only, table3, x)
+# run
+treatment.only()
+print.table3()
+rm(treatment.only, print.table3)

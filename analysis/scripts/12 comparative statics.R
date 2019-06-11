@@ -58,57 +58,60 @@ cont.inf <- function(pcou, pep, out){
 }
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-out <- seq(0,100,1)
-cou <- rep(25, length(out))
-ep <- rep(75, length(out))
+print.figure.cs <- function(){
+  out <- seq(0,100,1)
+  cou <- rep(25, length(out))
+  ep <- rep(75, length(out))
+  
+  # influence according to my measure
+  inf1 <- real.inf(pcou = cou,
+                   pep = ep,
+                   out = out,
+                   cf = ((ep+cou)/2))
+  
+  # influence according to the control measure
+  inf2 <- cont.inf(pcou = cou,
+                   pep = ep,
+                   out = out)
+  
+  # comparative statics
+  # figure
+  setwd(subdirs$graphs)
+  pdf("appendix_figure2.pdf",  width = 10, height = 7)
+  plot(1,
+       type = "n",
+       xlim = c(0, 100),
+       ylim = c(0, 1),
+       axes = FALSE,
+       xlab = "Position of the Outcome",
+       ylab = "Relative Influence of the EP",
+       cex.lab = 1.5)
+  lines(x = out, y = inf1, col = "gray25", lwd = 4)
+  lines(x = out, y = inf2, col = "gray50", lwd = 4, lty = "dashed")
+  
+  # borders of well behaved scenarios
+  abline(v = ep[1], lty = "dashed", lwd = 1.5)
+  abline(v = cou[1], lty = "dashed", lwd = 1.5)
+  
+  # split influence line
+  abline(h = .5, lty = "dashed", lwd = 1.5)
+  
+  # axis
+  axis (side = 1, at = seq(0, 100, 5), cex = 1.5)
+  axis (side = 2, at = seq(0, 1, 0.2), cex = 1.5)
+  
+  # position markers of the actors
+  text(x = ep[1], y = -0.01, "EP", pos = 4, cex = 1.5)
+  text(x = cou[1], y = -0.01, "Council", pos = 4, cex = 1.5)
+  text(x = 47.2, y = -.01, "Cf", pos = 4, cex = 1.5)
+  
+  # legend
+  legend(x = 26, y = 1, legend = c("Main Measure", "Control Measure"), lty = c("solid", "dashed"),
+         col = c("gray25", "gray50"), cex = 1.5, bty = "n",
+         lwd = 3)
+  
+  dev.off()  
+}
 
-# influence according to my measure
-inf1 <- real.inf(pcou = cou,
-                 pep = ep,
-                 out = out,
-                 cf = ((ep+cou)/2))
-
-# influence according to the control measure
-inf2 <- cont.inf(pcou = cou,
-                 pep = ep,
-                 out = out)
-
-# comparative statics
-# figure
-setwd(subdirs$graphs)
-pdf("appendix_figure2.pdf",  width = 10, height = 7)
-plot(1,
-     type = "n",
-     xlim = c(0, 100),
-     ylim = c(0, 1),
-     axes = FALSE,
-     xlab = "Position of the Outcome",
-     ylab = "Relative Influence of the EP",
-     cex.lab = 1.5)
-lines(x = out, y = inf1, col = "gray25", lwd = 4)
-lines(x = out, y = inf2, col = "gray50", lwd = 4, lty = "dashed")
-
-# borders of well behaved scenarios
-abline(v = ep[1], lty = "dashed", lwd = 1.5)
-abline(v = cou[1], lty = "dashed", lwd = 1.5)
-
-# split influence line
-abline(h = .5, lty = "dashed", lwd = 1.5)
-
-# axis
-axis (side = 1, at = seq(0, 100, 5), cex = 1.5)
-axis (side = 2, at = seq(0, 1, 0.2), cex = 1.5)
-
-# position markers of the actors
-text(x = ep[1], y = -0.01, "EP", pos = 4, cex = 1.5)
-text(x = cou[1], y = -0.01, "Council", pos = 4, cex = 1.5)
-text(x = 47.2, y = -.01, "Cf", pos = 4, cex = 1.5)
-
-# legend
-legend(x = 26, y = 1, legend = c("Main Measure", "Control Measure"), lty = c("solid", "dashed"),
-       col = c("gray25", "gray50"), cex = 1.5, bty = "n",
-       lwd = 3)
-
-dev.off()
-
-rm(cou, ep, inf1, inf2, out, cont.inf, real.inf)
+# run
+print.figure.cs()

@@ -1,4 +1,4 @@
-# current version 09.06.2019
+# current version 10.06.2019
 rm(list = ls() )
 
 # libraries
@@ -17,7 +17,7 @@ library(xtable)
 #_____________________________________________________________________________________________________________________
 # change this to your directory (containing master.R) using forward slashes instead of Windows back slashes
 # e.g.: main <- "C:/Power and Transparency in Political Negotiations"
-main <- "C:/analysis"
+main <- "C:/Users/Philipp/Dropbox/research/papers/Power and Transparency in Political Negotiations/analysis"
 #_____________________________________________________________________________________________________________________
 
 #_____________________________________________________________________________________________________________________
@@ -63,9 +63,8 @@ subdirs <- list(scripts = paste(main, "scripts", sep = "/"),
 #_____________________________________________________________________________________________________________________
 set.seed(123)
 
-# record the runtime for each script
-time.box <- list(script1 = NA, script2 = NA, script3 = NA, script4 = NA, script5 = NA, script6 = NA, script7 = NA, 
-                 script8 = NA, script9 = NA, script10 = NA, script11 = NA, script12 = NA)
+# record overall runtime
+start.time <- Sys.time()
 
 # Step 1: merging DEU2 data with Proctype (provided by Robert Thomson upon request)
 # last run on 10.06.2019
@@ -107,7 +106,7 @@ source("07 treatment only.R", echo = TRUE)
 setwd(subdirs$scripts)
 source("08 placebo test.R", echo = TRUE)
 
-# Step 9: multiverse (Note: commented out latex fonts for replication)
+# Step 9: multiverse
 # last run on 10.06.2019
 setwd(subdirs$scripts)
 source("09 multiverse.R", echo = TRUE)
@@ -154,3 +153,7 @@ source("02 gradient boosting relative salience weighted.R", echo = TRUE)
 # last run 10.06.2019
 setwd(paste(subdirs$scripts,"/weighted Council salience models", sep=""))
 source("03 models weighted salience.R", echo = TRUE)
+
+end.time <- Sys.time()
+run.time <- round(difftime(end.time,start.time),2)
+cat(paste("\n"," Overall runtime was: ", run.time, sep = ""))

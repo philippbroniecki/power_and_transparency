@@ -248,12 +248,8 @@ descriptives <- function(){
   
 }
 
-s.time <- Sys.time()
-# run everything
+# run
 descriptives()
-e.time <- Sys.time()
-e.time - s.time
-time.box$script10 <- e.time - s.time
 
 # remove descriptives function from global environment
 rm(descriptives)

@@ -128,12 +128,11 @@ file.type.merge <- function(){
   
 }
 
-# run everything (file.type.merge calls previous functions)
+# run everything
 s.time <- Sys.time()
 file.type.merge()
 e.time <- Sys.time()
 e.time - s.time
-time.box$script1 <- e.time - s.time
 
 # remove functions from global environment
 rm(conflict.of.interest.merge, deu.merge, file.type.merge, leg.cycles.merge)

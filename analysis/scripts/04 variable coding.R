@@ -215,11 +215,7 @@ variable.coding <- function(){
   save(df.full, file="04 step main variables coded.RData")
 }
 
-# run everything
-s.time <- Sys.time()
+# run
 variable.coding()
-e.time <- Sys.time()
-e.time - s.time
-time.box$script4 <- e.time - s.time
 rm(com.supp.func, counterfact.func, real.inf,
    mid.func, no.change.func, cont.inf, variable.coding)

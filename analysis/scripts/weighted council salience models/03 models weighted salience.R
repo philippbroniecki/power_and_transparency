@@ -112,7 +112,7 @@ w.treatment.only <- function(){
 }
 
 # to plot the appendix table 4
-appendix_table.4 <- function(){
+appendix_table4 <- function(){
 
   # load model objects
   setwd(subdirs$workdata)
@@ -169,4 +169,4 @@ appendix_table.4 <- function(){
 
 # run
 w.treatment.only()
-appendix_table.4()
+appendix_table4()

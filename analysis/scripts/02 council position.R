@@ -210,12 +210,8 @@ council.position <- function(){
   
 }
 
-s.time <- Sys.time()
 # run everything
 council.position()
-e.time <- Sys.time()
-e.time - s.time
-time.box$script2 <- e.time - s.time
 
 # remove council function from global environment
 rm(council.position)

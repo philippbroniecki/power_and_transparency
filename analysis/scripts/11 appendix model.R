@@ -84,9 +84,6 @@ appendix_model <- function(){
       # R^2
       fit.box[loop.counter] <- cor(m.sep$yhat, dv.sep)^2
       
-      # Number of observations
-      n.box[loop.counter] <- length(m.sep$yhat)
-      
       # Simulations
       # $p returns the coefficients
       # $p.var returns the covariance 
@@ -143,9 +140,4 @@ appendix_model <- function(){
 }
 
 # run
-s.time <- Sys.time()
-# run everything
 appendix_model()
-e.time <- Sys.time()
-e.time - s.time
-time.box$script11 <- e.time - s.time

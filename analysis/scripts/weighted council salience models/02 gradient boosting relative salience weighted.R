@@ -175,4 +175,4 @@ w.non.parametric <- function(){
 }
 
 # run
-w.non.parametric
+w.non.parametric()

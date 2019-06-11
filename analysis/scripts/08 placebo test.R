@@ -142,11 +142,7 @@ table4 <- function(){
                type = "html", file = paste(subdirs$tables,"/table4.html",sep=""))
 }
 
-# run everything
-s.time <- Sys.time()
+# run
 placebo.test()
-e.time <- Sys.time()
-e.time - s.time
-time.box$script8 <- e.time - s.time
 table4()
 rm(placebo.test, table4)

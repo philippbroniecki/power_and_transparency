@@ -248,10 +248,6 @@ multiverse <- function(){
   
 }
 
-# run everything
-s.time <- Sys.time()
+# run
 multiverse()
-e.time <- Sys.time()
-e.time - s.time
-time.box$script9 <- e.time - s.time
 rm(multiverse)

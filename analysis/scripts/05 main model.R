@@ -194,6 +194,10 @@ main.model <- function(){
   round(b.out,2)
   b.out[4:5,]
   
+  # table 1
+  table1 <- xtable(b.out, align = c("l","c","c"), NA.string = " ", sanitize.rownames.function = TRUE, digits = 2)
+  print.xtable(table1, type = "html", file = paste(subdirs$tables,"/table1.html",sep=""))
+  
   # save
   save(df.matched, file = "05 step analysis data with relative salience.RData")
   
@@ -256,10 +260,6 @@ main.model <- function(){
   
 }
 
-# run everything
-s.time <- Sys.time()
+# run
 main.model()
-e.time <- Sys.time()
-e.time - s.time
-time.box$script5 <- e.time - s.time
 rm(main.model)

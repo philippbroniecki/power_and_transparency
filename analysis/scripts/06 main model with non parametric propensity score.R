@@ -183,10 +183,6 @@ non.parametric <- function(){
 }
 
 
-# run everything
-s.time <- Sys.time()
+# run
 non.parametric()
-e.time <- Sys.time()
-e.time - s.time
-time.box$script6 <- e.time - s.time
 rm(non.parametric)
