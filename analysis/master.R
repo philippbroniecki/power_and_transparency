@@ -1,10 +1,8 @@
-# current version 10.06.2019
 rm(list = ls() )
 
 # libraries
 library(foreign)
 library(Amelia)
-library(texreg)
 library(psych)
 library(frm)
 library(Matching)
@@ -17,7 +15,7 @@ library(xtable)
 #_____________________________________________________________________________________________________________________
 # change this to your directory (containing master.R) using forward slashes instead of Windows back slashes
 # e.g.: main <- "C:/Power and Transparency in Political Negotiations"
-main <- "C:/Users/Philipp/Dropbox/research/papers/Power and Transparency in Political Negotiations/analysis"
+main <- "C:/Users/Philipp/Documents/github/power_and_transparency_in_political_negotiations/analysis"
 #_____________________________________________________________________________________________________________________
 
 #_____________________________________________________________________________________________________________________
@@ -45,22 +43,12 @@ latex <- 0
 if (latex) ghostscript.file.path <- "C:/Program Files/gs/gs9.27/bin/gswin64c.exe"
 #_____________________________________________________________________________________________________________________
 
-# sub-directories (do not change)
-source(paste(main,"/scripts/auxiliary/init.R",sep=""))
-subdirs <- list(scripts = paste(main, "scripts", sep = "/"),
-                org.DEUII = paste(main, "original data sets", "DEU2", sep = "/"),
-                leg.cycles = paste(main, "original data sets", "Legislative Cycles", sep = "/"),
-                council.voting = paste(main, "original data sets", "Council Voting Weights", sep = "/"),
-                corrected.EAs = paste(main, "original data sets", "EAsCorrected", sep = "/"),
-                same.country = paste(main, "original data sets", "ConflictOfInterest", sep = "/"),
-                type.data = paste(main, "original data sets", "type of file", sep = "/"),
-                ea.data = paste(main, "original data sets", "Early Agreements", sep = "/"),
-                workdata = paste(main, "work data", sep = "/"),
-                graphs = paste(main, "figures", sep = "/"),
-                tables = paste(main, "tables", sep = "/"))
+# set up sub-directories
+source(paste(main,"/scripts/auxiliary/init.R",sep=""), echo = FALSE)
+subdirs <- init()
 
 #_____________________________________________________________________________________________________________________
-# Sequence 
+# Sequence (main program starts here)
 #_____________________________________________________________________________________________________________________
 set.seed(123)
 
