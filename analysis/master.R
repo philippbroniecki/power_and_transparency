@@ -46,6 +46,7 @@ if (latex) ghostscript.file.path <- "C:/Program Files/gs/gs9.27/bin/gswin64c.exe
 #_____________________________________________________________________________________________________________________
 
 # sub-directories (do not change)
+source(paste(main,"/scripts/auxiliary/init.R",sep=""))
 subdirs <- list(scripts = paste(main, "scripts", sep = "/"),
                 org.DEUII = paste(main, "original data sets", "DEU2", sep = "/"),
                 leg.cycles = paste(main, "original data sets", "Legislative Cycles", sep = "/"),
